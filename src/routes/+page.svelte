@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { FCBController } from '$lib/FCBController';
+	import IconMidiPort from '~icons/mdi/midi-port';
 	type MIDIMessage = {
 		timestamp: number;
 		data: number[];
@@ -65,43 +66,55 @@
 	<div class="p-4" />
 	<h1 class="text-4xl">FCB1010 Web Editor</h1>
 	<div class="p-4" />
-	<section>
-		<label for="midi-input-device">Midi Input Device</label>
-		<select
-			class="bg-slate-800 p-2 rounded-xl"
-			name="midi-input-device"
-			bind:value={selectedInputDevice}
-			on:change={handleInputDeviceChange}
-		>
-			<option value="">None</option>
-			{#each midiInputDevices as midiInputDevice}
-				<option value={midiInputDevice.id}>{midiInputDevice.name}</option>
-			{/each}
-		</select>
+	<section
+		class="flex self-center md:gap-8 border-gray-100 border-2 py-6 px-1 gap-4 md:px-12 rounded-xl"
+	>
+		<div class="flex flex-col max-w-xs text-left">
+			<label for="midi-input-device">Midi Input Device</label>
+			<div class="flex flex-row gap-1">
+				<IconMidiPort class="flex text-3xl text-green-500" />
+				<select
+					class="bg-purple-900 p-2 rounded-xl"
+					name="midi-input-device"
+					bind:value={selectedInputDevice}
+					on:change={handleInputDeviceChange}
+				>
+					<option value="">None</option>
+					{#each midiInputDevices as midiInputDevice}
+						<option value={midiInputDevice.id}>{midiInputDevice.name}</option>
+					{/each}
+				</select>
+			</div>
+		</div>
 
-		<label for="midi-output-device">Midi Output Device</label>
-		<select
-			class="bg-slate-800 p-2 rounded-xl"
-			bind:value={selectedOutputDevice}
-			name="midi-output-device"
-			on:change={handleOutputDeviceChange}
-		>
-			<option value="">None</option>
-			{#each midiOutputDevices as midiOutputDevice}
-				<option value={midiOutputDevice.id}>
-					{midiOutputDevice.name}
-				</option>
-			{/each}
-		</select>
+		<div class="flex flex-col max-w-xs text-left">
+			<label for="midi-output-device">Midi Output Device</label>
+			<div class="flex flex-row gap-1">
+				<IconMidiPort class="text-3xl text-purple-500" />
+				<select
+					class="bg-purple-900 p-2 rounded-xl"
+					bind:value={selectedOutputDevice}
+					name="midi-output-device"
+					on:change={handleOutputDeviceChange}
+				>
+					<option value="">None</option>
+					{#each midiOutputDevices as midiOutputDevice}
+						<option value={midiOutputDevice.id}>
+							{midiOutputDevice.name}
+						</option>
+					{/each}
+				</select>
+			</div>
+		</div>
 	</section>
 	<div class="p-4" />
-	<div class="p-4 bg-slate-800 rounded-xl min-h-500px w-1/2 self-center">
+	<div class="p-4 border-gray-300 border-2 rounded-xl min-h-500px w-1/2 self-center">
 		<div class="pb-2 text-left">
 			<button class="bg-slate-600 px-4 py-2 rounded-xl hover:bg-slate-500">Controller</button>
 			<button class="bg-slate-700 px-4 py-2 rounded-xl hover:bg-slate-500">Table</button>
 		</div>
 		<div class="w-full border-b-2 border-slate-700" />
-		<div class="p-4" />
+		<div class="p-2" />
 		<div class="bg-gray-500 p-2 rounded-md">
 			<div class="p-2 border-b-2 border-gray-600">
 				<h2 class="text-3xl text-left ml-16 text-black font-bold">FCB1010</h2>
